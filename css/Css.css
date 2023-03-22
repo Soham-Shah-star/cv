@@ -1,0 +1,127 @@
+
+body {
+  margin: 0;
+  text-align: center;
+  font-family: "Merriweather", serif;
+}
+
+h1 {
+  margin: 0;
+  font-family: "Sacramento", cursive;
+  font-size: 8rem;
+  color: #66BFBF;
+  line-height: 2;
+}
+
+.skill-row {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  line-height: 2;
+  margin-bottom: 100px;
+  vertical-align: middle;
+}
+
+.sk {
+  width: 50%;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 100px;
+}
+
+.sk2 {
+  width: 70%;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 100px;
+}
+
+h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2.5rem;
+  color: #66BFBF;
+  font-weight: normal;
+}
+
+.list {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+  font-weight: normal;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+h3 {
+  color: #11999E;
+}
+
+.top-container {
+  background-color: #E4F9F5;
+  padding: 20px;
+}
+
+.middle-container {
+  margin-top: 20px
+}
+
+.bottom-container {
+  padding-top: 15px;
+  padding-bottom: 50px;
+  background-color: #66BFBF;
+}
+
+.cloud {
+  position: relative;
+  left: 300px;
+}
+
+.cloud2 {
+  position: relative;
+  left: 200px;
+  display: block;
+}
+
+.skilli  {
+  float: left;
+  margin-right: 30px;
+  width: 25%;
+}
+
+.chilli  {
+  float: right;
+  margin-left: 30px;
+  width: 25%;
+}
+
+.g {
+  color:black;
+}
+
+.footer-link {
+  padding-right: 20px;
+}
+
+.extra {
+  position: relative;
+  left: 21%;
+  line-height: 0.5;
+}
+
+.s {
+
+}
+
+.line {
+  border: dotted 6px;
+  height: 0px;
+  width: 8%;
+  color: grey;
+  border-bottom: none;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
