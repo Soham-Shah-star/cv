@@ -5,6 +5,11 @@ body {
   font-family: "Merriweather", serif;
 }
 
+html
+{
+  scroll-behavior:smooth;
+}
+
 h1 {
   margin: 20px;
   margin-top: 50px;
