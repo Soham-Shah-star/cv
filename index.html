@@ -8,6 +8,88 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Sacramento&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const workExperiences = document.querySelectorAll('.skill-row');
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            workExperiences.forEach(exp => {
+                observer.observe(exp);
+            });
+
+            var descriptions = document.querySelectorAll('.project-info');
+
+            descriptions.forEach(function(desc) {
+       if (desc.scrollHeight > desc.clientHeight) {
+           var readMore = document.createElement('span');
+           readMore.className = 'read-more';
+           readMore.textContent = 'Read More';
+
+           var projectDiv = desc.closest('.project');
+           projectDiv.appendChild(readMore);
+
+           readMore.addEventListener('click', function() {
+               desc.classList.toggle('expanded');
+               this.textContent = desc.classList.contains('expanded') ? 'Read Less' : 'Read More';
+           });
+       }
+   });
+
+   const prevBtn = document.querySelector('#left-button');
+   const nextBtn = document.querySelector('#right-button');
+   const projects = document.querySelectorAll('.project');
+   let currentIndex = 0;
+
+   // Initial setup
+   updateSlide();
+
+   // Event listeners for navigation buttons
+   nextBtn.addEventListener('click', function() {
+       if (currentIndex < projects.length - 1) {
+           currentIndex++;
+           updateSlide();
+       }
+   });
+
+   prevBtn.addEventListener('click', function() {
+       if (currentIndex > 0) {
+           currentIndex--;
+           updateSlide();
+       }
+   });
+
+   function updateSlide() {
+     document.getElementById("left-button").style.display = "inline";
+     document.getElementById("right-button").style.display = "inline";
+     if(currentIndex == 0)
+    {
+      document.getElementById("left-button").style.display = "none";
+    }
+    if(currentIndex == projects.length - 1)
+    {
+      document.getElementById("right-button").style.display = "none";
+    }
+     projects.forEach((project, index) => {
+           if (index === currentIndex) {
+               project.style.display = 'block';
+           } else {
+               project.style.display = 'none';
+           }
+       });
+   }
+   });
+
+    </script>
     </head>
     <body>
 
@@ -15,7 +97,7 @@
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#experience">Experience</a></li>
-            <li><a href="#skills">Skills</a></li>
+            <li><a href="#awards">Awards</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -29,14 +111,157 @@
       <img src="Images\mountain.png" alt="Mountain Image" id="mountain">
       </div>
 
-      <div class="middle-container">
+      <div id="vertical">
+      <div class="middle-container horizontal">
+        <br>
         <div class="profile">
-          <h2 id="about"><u>About Me</u></h2>
-          <img src="Images\me.png" alt="My Image" width="15%">
+          <h2 id="about" class="space">About Me</h2>
+          <img src="Images\me.png" alt="My Image" width="200px">
+          <p class="name">Soham Shah</p>
 
-          <p class="des">I'm Soham Shah, a Computer Science Undergraduate driven by a curiosity for new coding languages. I'm the author of "Agent Power," a science fiction book and I've also published a technical paper in IRJET. My hobbies include reading, playing badminton & chess.</p>
-        </div>
+          <p class="maindes">CS Undergraduate | Learning new programming languages | Developing projects</p>
+
+          <div class="des">
+            <p class="icon">school</p>
+            <p class="tdes">Manipal University - CS Sophmore</p>
+          </div>
+          <div class="des">
+            <p class="icon">sports_tennis</p>
+            <p class="tdes">Sports - Badminton & chess</p>
+          </div>
+          <div class="des">
+            <p class="icon">groups</p>
+            <p class="tdes">Volunteered in 4 events</p>
+          </div>
+          <div class="des">
+            <p class="icon">menu_book</p>
+            <p class="tdes">Author of Agent Power</p>
+          </div>
+          <div class="des">
+            <p class="icon">place</p>
+            <p class="tdes">Mumbai, India</p>
+          </div>
         <hr class="line">
+
+
+        <p id="label">Most Used Languages</p>
+        <div id="language_box">
+            <div class="blue c"></div>
+            <div class="red java"></div>
+            <div class="grey kodular"></div>
+            <div class="purple javascript"></div>
+            <div class="pink python"></div>
+
+        </div>
+
+        <br>
+
+        <div class="horizontal" id="legends">
+          <div class="circle blue"></div>
+          <p class="legend">C++</p>
+          <div class="circle red"></div>
+          <p class="legend">Java</p>
+          <div class="circle grey"></div>
+          <p class="legend">Kodular App Development</p>
+          <div class="circle purple"></div>
+          <p class="legend">JavaScript</p>
+          <div class="circle pink"></div>
+          <p class="legend">Python</p>
+        </div>
+      </div>
+
+      <br>
+
+      <div id="righttheme">
+        <h2 class="theme space"><center>My Projects</center></h2>
+        <div class="hscroll">
+          <button class="icon change-buttons" id="left-button">arrow_back_ios</button>
+          <div class="project">
+            <h3 class="project-text">Ardumate app</h3>
+            <img src="Images/ahome.png" class="pimg" height="560px" alt="Project 1 Image">
+            <p class="project-info">Introducing Ardumate, an innovative app designed to empower users with the ability to code using block-based programming. Ideal for beginners and enthusiasts alike, Ardumate simplifies the process of learning programming concepts by providing an intuitive interface where users can drag and drop blocks to create their own algorithms and projects.
+<br><br>
+With Ardumate, users can explore the fundamentals of coding without needing prior programming knowledge. Whether it's creating simple logic sequences or more complex algorithms, Ardumate offers a seamless experience for experimenting and learning. This app aims to foster creativity and problem-solving skills through engaging and interactive coding exercises, making it a valuable tool for educational institutions and hobbyists exploring the world of electronics and programming.
+<br><br>
+Discover Ardumate today and embark on a journey of discovery and innovation in the realm of block-based programming.</p>
+
+          </div>
+
+          <div class="project">
+            <h3 class="project-text">HER(Health Emergency Rescue)</h3>
+            <img src="Images/HER.png" height="560px" alt="Project 1 Image">
+            <p class="project-info">HER (Health Emergency Rescue) is an innovative project designed to enhance access to medical facilities during emergencies. This application connects users to the nearest hospitals, clinics, and blood banks, providing real-time availability information. By leveraging GPS and integrated databases, HER ensures that users can quickly identify the closest medical resources, making it easier to respond to urgent health situations.
+<br><br>
+The application not only displays the availability of these facilities but also allows users to book appointments directly through the app. This feature streamlines the process of securing medical assistance, reducing wait times and improving overall efficiency in critical scenarios. Users can access up-to-date information on the status of various medical facilities, ensuring they make informed decisions in times of need.
+<br><br>
+HER aims to bridge the gap between patients and healthcare providers, facilitating prompt and effective medical care. With its user-friendly interface and comprehensive connectivity, HER empowers individuals to take control of their health emergencies, providing a reliable and efficient solution for accessing medical support when it matters most.
+</p>
+          </div>
+
+
+
+<button class="icon change-buttons" id="right-button">arrow_forward_ios</button>
+          <div class="project">
+            <h3 class="project-text">Pharmacy Genie</h3><br>
+            <img src="Images/dispenser.jpeg" height="600px" alt="Project 1 Image">
+            <p class="project-info">Pharmacy Genie is an innovative medicine dispenser designed to revolutionize the way patients manage their medication. By integrating with a user-friendly mobile app, Pharmacy Genie ensures that patients receive the correct medicine based on their diagnosis. The device streamlines the medication process, making it both efficient and reliable, thereby reducing the risk of human error in administering prescriptions.
+<br><br>
+The mobile app connected to Pharmacy Genie plays a crucial role in the diagnosis and dispensing process. Users can input their symptoms or medical conditions, and the app, using advanced algorithms and a comprehensive medical database, determines the appropriate medication. Once the diagnosis is confirmed, the app communicates with the Pharmacy Genie dispenser to release the exact dosage required. This seamless integration between the app and the dispenser ensures that patients receive their medication promptly and accurately.
+<br><br>
+Pharmacy Genie is not just a convenience tool; it also enhances patient safety and adherence to prescribed treatments. The device can store multiple types of medications and is equipped with features that remind patients when it is time to take their medicine. This is particularly beneficial for individuals with chronic conditions who require regular medication. By ensuring timely and correct dispensing of medicines, Pharmacy Genie supports better health outcomes and contributes to a more efficient healthcare system.</p>
+
+          </div>
+
+          <div class="project">
+            <h3 class="project-text">Paralympics Wheelchair</h3><br>
+            <img src="Images/wheelchair.jpeg" height="400px" width="300px" alt="Project 1 Image">
+            <p class="project-info">The Paralympics Wheelchair is a groundbreaking innovation designed to enable athletes with disabilities to actively participate in football. This specially engineered wheelchair is built to provide optimal support, agility, and control, allowing users to maneuver effortlessly on the football field. By incorporating advanced technology and robust materials, the Paralympics Wheelchair ensures that athletes can perform at their best, experiencing the thrill of the game without limitations.
+<br><br>
+Equipped with features tailored specifically for football, the Paralympics Wheelchair includes a reinforced frame, responsive wheels, and adaptive controls that cater to the unique needs of each player. A handle near the legs enables the wheelchair to kick the ball, enhancing the player's ability to interact with the game dynamically. Additionally, the wheelchair is controlled by a joystick, offering intuitive navigation and precise control, essential for quick turns and strategic plays on the field.
+<br><br>
+Beyond its technical capabilities, the Paralympics Wheelchair represents a significant step forward in promoting inclusivity in sports. By enabling athletes with disabilities to play football competitively, this wheelchair fosters a sense of empowerment and community. It highlights the potential of adaptive sports equipment to break down barriers, creating opportunities for athletes to showcase their skills and passion for the game. The Paralympics Wheelchair is more than just a piece of equipment; it is a symbol of progress and a testament to the spirit of perseverance and determination.</p>
+
+          </div>
+
+          <div class="project">
+            <h3 class="project-text">Projects blog app</h3><br>
+            <img src="Images/projects.png" height="560px" alt="Project 1 Image">
+            <p class="project-info">The Project Blog App is a dynamic and user-friendly platform designed to display the detailed content of various projects, making it an ideal tool for developers, engineers, artists, and enthusiasts to share their work with a broader audience. This app features an intuitive interface where users can create and manage project blogs, each with its own dedicated space for descriptions, images, videos, and related resources. By providing a structured and visually appealing format, the Project Blog App ensures that every project is presented professionally, highlighting key aspects such as objectives, methodologies, outcomes, and future plans.
+<br><br>
+One of the standout features of the Project Blog App is its versatility in content presentation. Users can easily embed multimedia elements like high-resolution images, video demonstrations, and interactive charts to enhance their project descriptions. This rich media support not only makes the blogs more engaging but also helps in conveying complex ideas and processes effectively. Additionally, the app allows for the integration of code snippets and technical documentation, making it a valuable tool for showcasing software projects, engineering prototypes, and scientific research. The responsive design ensures that the content looks great on all devices, whether it's a desktop, tablet, or smartphone.
+<br><br>
+The Project Blog App also fosters community engagement and collaboration. Readers can leave comments, ask questions, and provide feedback directly on the blog posts, creating a vibrant community of like-minded individuals. Users can follow their favorite project creators, receive updates on new posts, and share blogs on social media platforms to reach a wider audience.
+</p>
+          </div>
+
+
+
+
+        </div>
+
+        <br>
+        <br>
+
+
+  </div>
+  </div>
+
+  <div class="sk2 card" id="awards">
+    <h2 class="theme"><center>Awards</center></h2>
+  <ul>
+    <li class="list">Runner up for the best student in Undergraduate computer science batch for 1st and 2nd semester
+    <li class="list">Scored third rank in Junior Robocon 2017 organized By MIT VGS
+    <li class="list">My project “Pharmacy Genie”was shortlisted as the top 20 projects in the Volvo Breathe Free Contest organized by Network 18 (2020)
+    <li class="list">My Idea “Health Improver Machine” is published in IRJET(International Research Journal of Engineering and Technology) (2019)
+    <li class="list">Scored third rank in Robotics VIGYANTRAM competition (2019)
+    <li class="list">Qualified the First Round in Junior Category of WORLD ROBOT OLYMPIAD(2018)
+  </u>
+  <br>
+  <br>
+  <br>
+
+</div>
+
 
 
 
@@ -46,8 +271,8 @@
           <div class="skill-row">
             <img class="skilli" src="Images\smartphone.png" alt="App Developer">
             <h3>App Developer - Science Kidz</h3>
-            <p>March 2022 - July 2023</p>
-            <p>Developed an app for Team Science Kidz. The app contains options for block-based arduino programming, so even people without access to laptop can learn basic programming</p>
+            <p class="stext">March 2022 - July 2023</p>
+            <p class="stext">I developed an app for Team Science Kidz that offers block-based Arduino programming options, making it accessible for individuals without laptops to learn basic programming. The app empowers users by providing an intuitive and user-friendly platform to explore and understand foundational programming concepts, regardless of their access to traditional computing resources.</p>
           </div>
           <br>
           <br>
@@ -55,8 +280,8 @@
           <div class="skill-row">
             <img class="chilli" src="Images\ux.png" alt="CodeNinjas">
             <h3>Sensei - CodeNinjas</h3>
-            <p>June 2023 - July 2023</p>
-            <p>Mentored & helped students at CodeNinjas with JavaScript programming</p>
+            <p class="stext">June 2023 - July 2023</p>
+            <p class="stext">I mentored and assisted students at CodeNinjas in learning and mastering JavaScript programming. I provided guidance on coding techniques, helped troubleshoot and debug their code, and supported them in understanding fundamental programming concepts</p>
           </div>
           <br>
           <br>
@@ -64,9 +289,9 @@
           <div class="skill-row">
             <img class="skilli" src="Images\kodular.png" alt="Kodular Icon">
             <h3>Extension developer & Professional Support at Kodular Community</h3>
-            <p>March 2020 - PRESENT</p>
+            <p class="stext">March 2020 - PRESENT</p>
 
-            <p>Created extensions to achieve specific tasks for app building through Kodular, and provided solutions in the kodular community to solve problems that users of Kodular faced. </p>
+            <p class="stext">I created custom extensions to accomplish specific tasks for app development using Kodular and actively contributed to the Kodular community by providing solutions to problems encountered by its users. Through these efforts, I enhanced the app-building capabilities of the platform and supported fellow developers in overcoming technical challenges.</p>
 
         </div>
           </div>
@@ -78,8 +303,8 @@
 
               <img src="Images\charity.png" alt="" class="chilli">
             <h3>Volunteer - Dilkush Children’s Home NGO </h3>
-            <p>JUNE 2018 - MARCH 2019</p>
-            <p>Volunteered with team Science Kidz at for 16 hours session to teach the kids robotics and programming concepts</p>
+            <p class="stext">JUNE 2018 - MARCH 2019</p>
+            <p class="stext">I volunteered with Team Science Kidz for a 16-hour session to teach children robotics and programming concepts. During this time, I introduced them to the fundamentals of robotics and programming, engaging them in hands-on activities and projects to foster their understanding and interest in these fields.</p>
           </div>
           <br>
           <br>
@@ -87,36 +312,9 @@
           <div class="skill-row">
             <img class="skilli" src="Images\robot.png" alt="Robot icon">
             <h3>Ignited Minds Expo</h3>
-            <p>2019</p>
-            <p>Volunteered in Ignited Minds Expo & Robolympics organized by Science Kidz and supported by Ministry of Youth Affairs & Sports</p>
+            <p class="stext">2019</p>
+            <p class="stext">I volunteered at the Ignited Minds Expo & Robolympics, organized by Science Kidz and supported by the Ministry of Youth Affairs & Sports. In this role, I assisted in coordinating events, guiding participants, and ensuring the smooth execution of the activities. My contributions helped promote STEM education and fostered a spirit of innovation and competition among the youth.</p>
           </div>
-
-          <h2 id="skills"><u>Programming Skills</u></h2>
-
-          <div class="sk">
-            <ul>
-              <li class="list">C++
-              <li class="list">Java
-              <li class="list">Arduino Coding
-              <li class="list">Python basics
-              <li class="list">Javascript basics
-              <li class="list">App designing with kodular
-            </ul>
-          </div>
-
-          <h2><u>Awards</u></h2>
-
-          <div class="sk2">
-          <ul>
-            <li class="list">Runner up for the best student in Undergraduate computer science batch for 1st and 2nd semester
-            <li class="list">Scored third rank in Junior Robocon 2017 organized By MIT VGS
-            <li class="list">My project “Pharmacy Genie”was shortlisted as the top 20 projects in the Volvo Breathe Free Contest organized by Network 18 (2020)
-            <li class="list">My Idea “Health Improver Machine” is published in IRJET(International Research Journal of Engineering and Technology) (2019)
-            <li class="list">Scored third rank in Robotics VIGYANTRAM competition (2019)
-            <li class="list">Qualified the First Round in Junior Category of WORLD ROBOT OLYMPIAD(2018)
-          </u>
-
-        </div>
 
 
       </div>
